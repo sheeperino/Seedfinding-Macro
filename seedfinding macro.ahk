@@ -1,4 +1,4 @@
-﻿#SingleInstance, force
+#SingleInstance, force
 SetKeyDelay, -1
 
 global filteredLines := {}
@@ -72,17 +72,7 @@ Numpad2::
     InputCoordinates("overworld", "portal")
 Return
 
-*!Numpad2::
-    line--
-    InputCoordinates("overworld", "portal")
-Return
-
 *^Numpad2::
-    InputCoordinates("the_nether", "portal")
-Return
-
-*^!Numpad2::
-    line--
     InputCoordinates("the_nether", "portal")
 Return
 
@@ -90,17 +80,7 @@ Numpad3::
     InputCoordinates("overworld", "village")
 Return
 
-*!Numpad3::
-    line--
-    InputCoordinates("overworld", "village")
-Return
-
 Numpad4::
-    InputCoordinates("overworld", "ruined")
-Return
-
-*!Numpad4::
-    line--
     InputCoordinates("overworld", "ruined")
 Return
 
