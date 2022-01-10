@@ -18,7 +18,7 @@ SetTitleMatchMode, 2
 CoordMode, Mouse, Window
 
 global oldWorldsFolder := "C:\Users\Sophie\Desktop\MultiMC\instances\1.12.2\.minecraft\oldWorlds\"
-global SavesDirectories := ["C:\Users\Sophie\Desktop\MultiMC\instances\1.16.11\.minecraft\saves\"]
+global SavesDirectories := ["C:\Users\Sophie\Desktop\MultiMC\instances\1.16.11\.minecraft\saves\","C:\Users\Sophie\Desktop\MultiMC\instances\1.16.12\.minecraft\saves\"]
 
 global delayType := "Accurate" ; Accurate or Standard
 global delay := 60 ; Delay between keypresses
@@ -42,13 +42,10 @@ CreateWorld(idx)
   {
     pid := PIDs[idx]  
     WaitMenuScreen(idx)
-    if (instances > 1) {
-      nextIdx := Mod(idx, instances) + 1
-      SwitchInstance(nextIdx)
-    }
   	
   	Reset(pid)
       sleep, 50
+
     if (worldMoving)
   	  MoveWorlds(idx)
   }
@@ -81,6 +78,12 @@ ExitWorld()
     WinGetTitle, title, ahk_pid %pid%
     if (GetActiveInstanceNum() == idx)
       return
+
+    if (instances > 1) {
+      idx := GetActiveInstanceNum()
+      nextIdx := Mod(idx, instances) + 1
+      SwitchInstance(nextIdx)
+    }
 
   Send {Blind}{Shift Down}{Tab}{Shift Up}
   Send {Blind}{Enter}
